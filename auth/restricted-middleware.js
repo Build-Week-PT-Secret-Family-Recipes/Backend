@@ -8,6 +8,7 @@ function restrict()
     }
 
     return async (req, res, next) => {
+        next()
         
         // try {
 

@@ -9,29 +9,29 @@ function restrict()
 
     return async (req, res, next) => {
         
-        try {
+        // try {
 
-            const {token} = req.cookies;
+        //     const {token} = req.cookies;
 
-            if(!token)
-            {
-                return res.status(401).json(authError);
-            }
+        //     if(!token)
+        //     {
+        //         return res.status(401).json(authError);
+        //     }
 
-            jwt.verify(token, process.env.JWT_SECRET, (err, decoded) => {
+        //     jwt.verify(token, process.env.JWT_SECRET, (err, decoded) => {
                 
-                if(err)
-                {
-                   return  res.status(401).json(authError);
-                }
+        //         if(err)
+        //         {
+        //            return  res.status(401).json(authError);
+        //         }
 
-                req.id = decoded.id; // Set user id in request.  
-                next();
-            }) 
+        //         req.id = decoded.id; // Set user id in request.  
+        //         next();
+        //     }) 
 
-        } catch(err) {
-            next(err);
-        }
+        // } catch(err) {
+        //     next(err);
+        // }
     }
     
 }

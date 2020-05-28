@@ -76,12 +76,12 @@ function updateRecipeIngredient(ingredient,recipe_id,old_ingredient_id) {
 }
 
 // Get Recipe Ingredients
-function getRecipeIngredients(recipe_id, ingredient_id = 0) {
+function getRecipeIngredients(recipe_id, ingredient_id = 0) { 
     let qry = db("recipes_ingredients as ri")
-    .join("ingredients as i", "i.id", "ri.ingredient_id")
-    .join("units as u", "u.id", "ri.unit_id")
-    .select("ri.ingredient_id", "i.name as ingredient", "ri.unit_id", "u.name as unit", "ri.quantity")
-    .where("ri.recipe_id", recipe_id) 
+               .join("ingredients as i", "i.id", "ri.ingredient_id")
+               .join("units as u", "u.id", "ri.unit_id")
+               .select("ri.ingredient_id", "i.name as ingredient", "ri.unit_id", "u.name as unit", "ri.quantity")
+               .where("ri.recipe_id", recipe_id) 
     
     if(ingredient_id !== 0)
        return qry.where("ri.ingredient_id", ingredient_id)
@@ -90,15 +90,38 @@ function getRecipeIngredients(recipe_id, ingredient_id = 0) {
             
 }
 
-// Delete Recipee Ingredients
-function removeRecipeIngredients(recipe_id, ingredient_id) {
-    return db("recipes_ingredients")
-            .where("recipe_id",recipe_id)
-            .where("ingredient_id",ingredient_id)
-            .del()   
+// Delete Recipe Ingredients
+function removeRecipeIngredients(recipe_id, ingredient_id = 0) {
+    let qry = db("recipes_ingredients")
+               .where("recipe_id",recipe_id)               
+               .del()  
+    if(ingredient_id !== 0)
+      return qry.where("ingredient_id",ingredient_id)
+    else     
+      return qry  
 }
 
 
+// Add Recipe Instructionsn
+function addRecipeInstructions(recipesInstrunction) {
+    return db("recipes_instructions")
+            .insert(recipesInstrunction)
+            .then( ([id]) => {return db("recipes_instructions").where("id",id).first()})    
+}
+
+// Delete Recipe Instructions
+function removeRecipeInstructions(recipe_id, instruction_id = 0) {
+    let qry = db("recipes_instructions")
+               .where("recipe_id",recipe_id)               
+               .del()  
+    if(instruction_id !== 0)
+      return qry.where("id",instruction_id)
+    else     
+      return qry  
+}
+
+
+// Get Recipe Instructionsn
 function getRecipeInstrunctions(recipe_id) 
 {
     return db("recipes_instructions")
@@ -151,6 +174,8 @@ module.exports = {
    addRecipeIngredient,
    removeRecipeIngredients,
    updateRecipeIngredient,
+   addRecipeInstructions,
+   removeRecipeInstructions,
    getRecipeInstrunctions,
    checkRecipeIngredUnique  
 }

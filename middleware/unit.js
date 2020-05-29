@@ -58,7 +58,7 @@ module.exports = {
                 const unit = await Units.checkUnit(payload);
 
                 if(unit) {
-                    return res.status(404).json({message: "Unit is already exist."});    
+                    return res.status(409).json({message: "Unit is already exist."});    
                 } else {
                     next();             
                 }

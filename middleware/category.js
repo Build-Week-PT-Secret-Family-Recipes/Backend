@@ -58,7 +58,7 @@ module.exports = {
                 const category = await Categories.checkCategory(payload);
 
                 if(category) {
-                    return res.status(404).json({message: "Category is already exist."});    
+                    return res.status(409).json({message: "Category is already exist."});    
                 } else {
                     next();             
                 }

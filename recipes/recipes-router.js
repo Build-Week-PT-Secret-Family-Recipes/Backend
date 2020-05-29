@@ -95,30 +95,6 @@ router.post("/", restrict(), validateRecipeData(), async (req, res, next) => {
    
    })
 
-// Add Recipe
-// router.post("/", restrict(), validateRecipeData(), async (req, res, next) => {
-  
-//    try { 
-         
-//          const {category_id, title, source, description, image_link} = req.body
-//          const payload = {
-//             user_id: req.id,   //logged in user id
-//             category_id: category_id,
-//             title: title,
-//             source: source,
-//             description: description,
-//             image_link: image_link           
-//          }
-        
-//          const recipe = await recipeModel.add(payload) 
-//          res.json(recipe)
-
-//    } catch(err) {
-//          next(err)
-//    }
-
-// })
-
 
 // Update Recipe New Way
 router.put("/:id", restrict(), validateRecipeData(), validateRecipeId(), isUserRecipe(), async (req, res, next) => {
@@ -184,31 +160,6 @@ router.put("/:id", restrict(), validateRecipeData(), validateRecipeId(), isUserR
 })
 
 
-// Update Recipe
-// router.put("/:id", restrict(), validateRecipeData(), isUserRecipe(), async (req, res, next) => {
-  
-//    try { 
-//          const id = req.params.id
-//          const {category_id, title, source, description, image_link} = req.body
-//          const payload = {
-//             user_id: req.id,   //logged in user id
-//             category_id: category_id,
-//             title: title,
-//             source: source,
-//             description: description,
-//             image_link: image_link           
-//          }
-        
-//          const recipe = await recipeModel.update(payload,id)
-
-       
-//          res.json(recipe)
-
-//    } catch(err) {
-//          next(err)
-//    }
-
-// })
 
 // Delete Recipe
 router.delete('/:id', restrict(), validateRecipeId(), isUserRecipe(), async (req, res, next) => {  

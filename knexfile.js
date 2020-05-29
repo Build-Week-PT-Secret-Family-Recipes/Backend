@@ -20,8 +20,8 @@ module.exports = {
       connection: {
         host : '127.0.0.1',
         user : 'root',
-        password : 'root',
-        database : 'recipes_cookbook'
+        password : '',
+        database : 'recipes_cookbook_testing'
       },
       migrations: {
         directory: './database/migrations',

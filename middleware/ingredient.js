@@ -58,7 +58,7 @@ module.exports = {
                 const ingredient = await Ingredients.checkIngredient(payload);
 
                 if(ingredient) {
-                    return res.status(404).json({message: "Ingredient is already exist."});    
+                    return res.status(409).json({message: "Ingredient is already exist."});    
                 } else {
                     next();             
                 }

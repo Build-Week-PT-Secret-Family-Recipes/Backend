@@ -4,7 +4,7 @@
   "description": "Secret Family Recipes Cookbook",
   "main": "index.js",
   "scripts": {
-    "test": "cross-env MODE_ENV=testing jest",
+    "test": "cross-env MODE_ENV=testing JWT_SECRET=keepitsave jest",
     "test:watch": "cross-env MODE_ENV=testing jest --watch",
     "server": "cross-env MODE_ENV=development nodemon -r dotenv/config  index.js",
     "start": "node index"
